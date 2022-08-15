@@ -6,6 +6,9 @@ import android.os.Bundle;
 
 public class AddNewContactActivity extends AppCompatActivity {
 
+    private ContactAppDatabase contactAppDatabase;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
