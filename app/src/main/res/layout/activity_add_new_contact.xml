@@ -4,7 +4,7 @@
     <data>
         <variable
             name="clickHandler"
-            type="com.example.databinding.AddNewContactActivity.AddNewContactActivityClickHandler" />
+            type="com.example.databinding.AddNewContactActivity.AddNewContactActivityClickHandlers" />
         <variable
             name="contact"
             type="com.example.databinding.Contact" />
