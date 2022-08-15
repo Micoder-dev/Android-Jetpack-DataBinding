@@ -1,6 +1,9 @@
 package com.example.databinding;
 
-public class PersonModel3 {
+import androidx.databinding.BaseObservable;
+import androidx.databinding.Bindable;
+
+public class PersonModel3 extends BaseObservable {
 
     String name;
 
@@ -8,11 +11,13 @@ public class PersonModel3 {
         this.name = name;
     }
 
+    @Bindable
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+        notifyPropertyChanged(BR.name);
     }
 }
