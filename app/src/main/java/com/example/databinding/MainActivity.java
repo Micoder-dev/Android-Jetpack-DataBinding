@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -46,6 +47,11 @@ public class MainActivity extends AppCompatActivity {
         
         public void onByeBtnClick(View view) {
             Toast.makeText(mContext, "Bye btn clicked", Toast.LENGTH_SHORT).show();
+        }
+
+        public void goToMainActivity2(View view) {
+            Intent intent = new Intent(mContext, MainActivity2.class);
+            startActivity(intent);
         }
 
     }
