@@ -6,7 +6,10 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.databinding.databinding.ContactListIitemBinding;
 
 import java.util.ArrayList;
 
@@ -21,8 +24,15 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     @NonNull
     @Override
     public ContactViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_iitem, parent, false);
-        return new ContactViewHolder(itemView);
+//        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_iitem, parent, false);
+//        return new ContactViewHolder(itemView);
+
+        ContactListIitemBinding contactListIitemBinding = DataBindingUtil.inflate(
+                LayoutInflater.from(parent.getContext()),
+                R.layout.contact_list_iitem, parent, false);
+
+        return new ContactViewHolder(contactListIitemBinding);
+
     }
 
     @Override
@@ -30,8 +40,10 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
 
         Contact currentContact = contacts.get(position);
 
-        holder.name.setText(currentContact.getName());
-        holder.email.setText(currentContact.getEmail());
+//        holder.name.setText(currentContact.getName());
+//        holder.email.setText(currentContact.getEmail());
+
+        holder.contactListIitemBinding.setContact(currentContact);
 
     }
 
@@ -50,12 +62,16 @@ public class ContactDataAdapter extends RecyclerView.Adapter<ContactDataAdapter.
     }
 
     class ContactViewHolder extends RecyclerView.ViewHolder {
-        private TextView name, email;
+        // private TextView name, email;
+        private ContactListIitemBinding contactListIitemBinding;
 
-        public ContactViewHolder(@NonNull View itemView) {
-            super(itemView);
-            this.name = itemView.findViewById(R.id.tvName);
-            this.email = itemView.findViewById(R.id.tvEmail);
+        public ContactViewHolder(@NonNull ContactListIitemBinding contactListIitemBinding) {
+            super(contactListIitemBinding.getRoot());
+//            this.name = itemView.findViewById(R.id.tvName);
+//            this.email = itemView.findViewById(R.id.tvEmail);
+
+            this.contactListIitemBinding = contactListIitemBinding;
+
         }
     }
 
