@@ -49,7 +49,7 @@ public class MainActivity4 extends AppCompatActivity {
         recyclerView.setHasFixedSize(true);
 
         // Adapter
-        contactDataAdapter = new ContactDataAdapter();
+        contactDataAdapter = new ContactDataAdapter(contactArrayList);
         recyclerView.setAdapter(contactDataAdapter);
 
         // Database
@@ -88,7 +88,7 @@ public class MainActivity4 extends AppCompatActivity {
             String name = data.getStringExtra("NAME");
             String email = data.getStringExtra("EMAIL");
 
-            Contact contact = new Contact(name, email);
+            Contact contact = new Contact(name, email, 0);
 
             AddNewContact(contact);
 
@@ -107,14 +107,13 @@ public class MainActivity4 extends AppCompatActivity {
 
                 // onBackground
                 contactAppDatabase.getContactDao().delete(contact);
-
+                contactArrayList.remove(contact);
 
                 // on post execution
                 handler.post(new Runnable() {
                     @Override
                     public void run() {
 
-                        LoadData();
                         contactDataAdapter.notifyDataSetChanged();
 
                     }
@@ -136,6 +135,7 @@ public class MainActivity4 extends AppCompatActivity {
 
                 // onBackground
                 contactArrayList = (ArrayList<Contact>) contactAppDatabase.getContactDao().getAllContacts();
+                // contactArrayList.addAll(contactAppDatabase.getContactDao().getAllContacts());
 
 
                 // on post execution
@@ -166,6 +166,7 @@ public class MainActivity4 extends AppCompatActivity {
 
                 // onBackground
                 contactAppDatabase.getContactDao().insert(contact);
+                contactArrayList.add(contact);
 
 
                 // on post execution
@@ -173,7 +174,6 @@ public class MainActivity4 extends AppCompatActivity {
                     @Override
                     public void run() {
 
-                        LoadData();
                         contactDataAdapter.notifyDataSetChanged();
 
                     }
