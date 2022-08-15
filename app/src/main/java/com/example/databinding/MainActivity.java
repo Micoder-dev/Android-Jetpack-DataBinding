@@ -54,6 +54,11 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
 
+        public void goToMainActivity3(View view) {
+            Intent intent = new Intent(mContext, MainActivity3.class);
+            startActivity(intent);
+        }
+
     }
 
 }
